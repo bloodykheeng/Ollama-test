@@ -101,4 +101,5 @@ class OllamaChat extends Command
             'tokens'    => strlen($input), // Ollama doesn't return token count, so we estimate or skip
         ];
     }
+
 }
