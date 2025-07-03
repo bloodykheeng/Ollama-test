@@ -16,9 +16,27 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        Movie::factory()->count(10)->create()->each(function ($movie) {
-            $embedding = $this->generateNomicEmbedTextEmbedding($movie->title);
-            $movie->update(['embedding' => $embedding]);
-        });
+        $this->command->info('Starting to seed movies...');
+
+        for ($i = 0; $i < 10; $i++) {
+            $this->command->info("Creating movie " . ($i + 1) . "/10");
+
+            $title       = fake()->sentence(3);
+            $description = fake()->paragraph();
+
+            $this->command->info("Generating embedding for: {$title}");
+            $embedding = $this->generateNomicEmbedTextEmbedding($title);
+
+            Movie::create([
+                'title'       => $title,
+                'description' => $description,
+                'embedding'   => $embedding,
+            ]);
+
+            $this->command->info("✓ Movie created successfully");
+            $this->command->line(''); // Empty line for better readability
+        }
+
+        $this->command->info('Finished seeding movies!');
     }
 }

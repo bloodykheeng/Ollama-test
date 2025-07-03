@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->vector('embedding', dimensions: 728); // or 768 depending on your model
+            $table->vector('embedding', dimensions: 768); // or 768 depending on your model
             $table->timestamps();
         });
     }

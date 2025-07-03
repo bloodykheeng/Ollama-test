@@ -15,7 +15,7 @@ class RecommendMovie extends Command
      *
      * @var string
      */
-    protected $signature = 'app:recommend-movie';
+    protected $signature = 'RecommendMovie';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class RecommendMovie extends Command
      */
     public function handle()
     {
-        $title = $this->argument('title') ?? text('Enter the movie title for recommendations');
+        $title = text('Enter the movie title for recommendations');
 
         info("Generating recommendations for: \"$title\"");
 
