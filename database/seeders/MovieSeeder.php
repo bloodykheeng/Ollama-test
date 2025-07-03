@@ -25,7 +25,8 @@ class MovieSeeder extends Seeder
             $description = fake()->paragraph();
 
             $this->command->info("Generating embedding for: {$title}");
-            $embedding = $this->generateNomicEmbedTextEmbedding($title);
+            $combinedText = "{$title}. {$description}";
+            $embedding    = $this->generateNomicEmbedTextEmbedding($combinedText);
 
             Movie::create([
                 'title'       => $title,
